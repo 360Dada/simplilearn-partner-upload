@@ -412,7 +412,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     <div class="prog-lbl"><span id="prog-txt">0 of 7 completed</span><span id="prog-pct">0%</span></div>
     <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
   </div>
-  <div class="checklist">
+  <div class="checklist" id="checklist-items">
     <div class="ci" onclick="tick(this)"><div class="cbx">✓</div><div class="cl">All videos exported as <strong>.mp4</strong> and named following the video naming structure</div><span class="cbadge cb-req">Required</span></div>
     <div class="ci" onclick="tick(this)"><div class="cbx">✓</div><div class="cl">Caption files provided as <strong>.en.vtt</strong> (not .vtt) inside a <strong>transcript</strong> subfolder in each lesson</div><span class="cbadge cb-req">Required</span></div>
     <div class="ci" onclick="tick(this)"><div class="cbx">✓</div><div class="cl">Assessment submitted in <strong>Simplilearn CSV format</strong> with explanations for all questions</div><span class="cbadge cb-req">Required</span></div>
@@ -516,13 +516,24 @@ function showTab(id, btn) {
 // ── CHECKLIST ─────────────────────────────────────────────────────────────────
 function tick(el) {
   el.classList.toggle('done');
-  const done = document.querySelectorAll('.ci.done').length;
-  const total = document.querySelectorAll('.ci').length;
+  const done = document.querySelectorAll('#checklist-items .ci.done').length;
+  const total = document.querySelectorAll('#checklist-items .ci').length;
   const pct = Math.round(done / total * 100);
   document.getElementById('prog-txt').textContent = `${done} of ${total} completed`;
   document.getElementById('prog-pct').textContent = pct + '%';
   document.getElementById('prog-fill').style.width = pct + '%';
 }
+
+// Fallback event delegation for checklist
+document.addEventListener('DOMContentLoaded', function() {
+  const checklist = document.getElementById('checklist-items');
+  if (checklist) {
+    checklist.addEventListener('click', function(e) {
+      const item = e.target.closest('.ci');
+      if (item) tick(item);
+    });
+  }
+});
 
 // ── GOOGLE DRIVE UI ───────────────────────────────────────────────────────────
 const GD = {
