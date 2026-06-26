@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simplilearn — Expected Folder Structure</title>
+<style>
+:root{
+  --orange:#F78100;--blue:#0041C2;--dark:#1a1a2e;--text:#2d2d2d;
+  --muted:#6b7280;--border:#e5e7eb;--bg:#f9fafb;--surface:#fff;
+  --green:#059669;--red:#dc2626;--gd-blue:#1a73e8;--gd-hover:#f1f3f4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+
+/* TOP BAR */
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.logo-svg{height:26px;width:auto}
+.topbar-div{width:1px;height:22px;background:var(--border)}
+.topbar-label{font-size:12px;color:var(--muted);font-weight:500}
+.back-btn{display:flex;align-items:center;gap:6px;margin-left:auto;padding:7px 14px;border-radius:5px;border:1px solid var(--border);background:var(--surface);font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;text-decoration:none;transition:all .12s;font-family:inherit}
+.back-btn:hover{color:var(--text);border-color:var(--text);background:var(--bg)}
+
+/* PAGE HEADER */
+.page-hdr{background:linear-gradient(135deg,var(--blue) 0%,#0056e0 60%,#1a3fa8 100%);padding:32px 40px 28px;color:#fff;position:relative;overflow:hidden}
+.page-hdr::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(247,129,0,.15);border-radius:50%}
+.page-hdr-eye{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:8px}
+.page-hdr h1{font-size:24px;font-weight:700;position:relative;z-index:1;margin-bottom:6px}
+.page-hdr h1 span{color:var(--orange)}
+.page-hdr p{font-size:13px;color:rgba(255,255,255,.75);position:relative;z-index:1}
+
+/* LEGEND */
+.legend-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.legend-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-right:4px}
+.tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;font-family:'Courier New',monospace}
+.t-mp4{background:#fde8e8;color:#9b1c1c}
+.t-vtt{background:#ede9fe;color:#5b21b6}
+.t-csv{background:#dbeafe;color:#1e3a8a}
+.t-xlsx{background:#dcfce7;color:#166534}
+.t-html{background:#d1fae5;color:#065f46}
+.t-any{background:#f3f4f6;color:#374151}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
+
+/* GOOGLE DRIVE UI */
+.gd-wrap{flex:1;padding:24px;max-width:960px;margin:0 auto;width:100%}
+.gd-shell{border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07);background:#fff}
+.gd-topbar{background:#fff;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:10px}
+.gd-logo{display:flex;align-items:center;gap:6px;font-size:18px;font-weight:500;color:#5f6368;margin-right:8px}
+.gd-logo span{color:var(--gd-blue)}
+.gd-search-wrap{position:relative;flex:1;max-width:480px}
+.gd-search-wrap::before{content:'🔍';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:12px;z-index:1}
+.gd-search-wrap input{width:100%;background:#f1f3f4;border:none;border-radius:24px;padding:8px 16px 8px 36px;font-size:13px;color:#202124;outline:none;font-family:inherit}
+.gd-avatar{width:32px;height:32px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;margin-left:auto}
+.gd-toolbar{background:#fff;padding:8px 16px;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--border)}
+.gd-new-btn{display:flex;align-items:center;gap:6px;padding:6px 16px;border:1px solid var(--border);border-radius:24px;font-size:13px;font-weight:500;color:#202124;background:#fff;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.1);transition:all .12s;font-family:inherit}
+.gd-new-btn:hover{background:#f8f9fa;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.gd-cmd{padding:6px 10px;border:none;background:none;font-size:13px;color:#5f6368;cursor:pointer;border-radius:4px;transition:background .1s;font-family:inherit}
+.gd-cmd:hover{background:var(--gd-hover)}
+.gd-cmd-sep{width:1px;height:18px;background:var(--border);margin:0 4px}
+.gd-count{font-size:12px;color:#5f6368;margin-left:auto}
+.gd-bc{background:#fff;border-bottom:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;gap:4px;font-size:13px;flex-wrap:wrap;min-height:38px}
+.gd-bc-item{color:var(--gd-blue);cursor:pointer;padding:3px 6px;border-radius:4px;white-space:nowrap}
+.gd-bc-item:hover{background:var(--gd-hover)}
+.gd-bc-item.cur{color:#202124;cursor:default;font-weight:600}
+.gd-bc-item.cur:hover{background:none}
+.gd-bc-sep{color:#9aa0a6;font-size:12px}
+.gd-col-heads{display:grid;grid-template-columns:32px 1fr 110px 1fr;gap:0;padding:4px 16px;border-bottom:1px solid var(--border)}
+.gd-ch{font-size:11px;color:#5f6368;padding:6px 8px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.gd-row{display:grid;grid-template-columns:32px 1fr 110px 1fr;gap:0;padding:2px 16px;border-bottom:1px solid #f1f3f4;align-items:center;cursor:pointer;transition:background .1s;min-height:48px;background:#fff}
+.gd-row:hover{background:var(--gd-hover)}
+.gd-row:last-child{border-bottom:none}
+.gd-row.no-click{cursor:default}.gd-row.no-click:hover{background:#fff}
+.gd-row.toc-row{background:#fffdf7}.gd-row.toc-row:hover{background:#fff8ec}
+.gd-icon{font-size:18px;display:flex;align-items:center;justify-content:center}
+.gd-name-cell{display:flex;flex-direction:column;padding:0 8px;min-width:0}
+.gd-name{font-size:13px;color:#202124;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gd-name.fo{color:var(--gd-blue);font-weight:500}
+.gd-sub{font-size:11px;color:#5f6368;margin-top:1px}
+.gd-cell{font-size:12px;color:#5f6368;padding:0 8px}
+.gd-type{display:inline-flex;align-items:center;font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;font-family:'Courier New',monospace;letter-spacing:.03em}
+.gd-notes{font-size:12px;color:#5f6368;padding:0 8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sect-sep{padding:5px 16px;font-size:10px;font-weight:700;color:#5f6368;text-transform:uppercase;letter-spacing:.1em;background:#f8f9fa;border-bottom:1px solid var(--border)}
+.view-btn{font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;border:1px solid var(--gd-blue);background:#fff;color:var(--gd-blue);cursor:pointer;transition:all .12s;white-space:nowrap}
+.view-btn:hover{background:var(--gd-blue);color:#fff}
+.dl-btn-sm{font-size:11px;padding:4px 8px;border-radius:4px;border:1px solid var(--border);background:#fff;color:var(--muted);cursor:pointer;transition:all .12s}
+.dl-btn-sm:hover{background:var(--bg)}
+
+/* TOC OVERLAY */
+.toc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.toc-overlay.hidden{display:none}
+.toc-box{background:#fff;border-radius:8px;width:900px;max-width:96vw;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.25)}
+.toc-hdr{background:var(--dark);color:#fff;padding:16px 20px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.toc-hdr-title{font-size:15px;font-weight:700;flex:1}
+.toc-hdr-sub{font-size:11px;color:rgba(255,255,255,.5)}
+.toc-close-btn{width:28px;height:28px;border-radius:4px;border:none;background:rgba(255,255,255,.1);color:#fff;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.toc-close-btn:hover{background:rgba(255,255,255,.2)}
+.toc-dl-btn{display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:4px;border:1px solid rgba(255,255,255,.2);background:none;color:#fff;font-size:12px;cursor:pointer;font-family:inherit;transition:all .12s}
+.toc-dl-btn:hover{background:rgba(255,255,255,.1)}
+.toc-body{overflow-y:auto;flex:1}
+.toc-body::-webkit-scrollbar{width:4px}
+.toc-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.toc-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.toc-table th{background:var(--dark);color:#fff;padding:9px 12px;text-align:left;font-size:11px;font-weight:600;letter-spacing:.05em;position:sticky;top:0;z-index:2}
+.toc-table td{padding:7px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
+.toc-table tr:hover td{background:#f9fafb}
+.tc-course{background:#fff4e6;font-weight:700;color:var(--orange);border-bottom:2px solid var(--orange)}
+.tc-lesson{font-weight:600;color:var(--dark)}
+.tc-topic{color:var(--blue);font-weight:500}
+.tc-dur{font-family:'Courier New',monospace;font-size:11px;color:var(--muted);white-space:nowrap}
+.tc-sub{color:var(--muted);font-size:11.5px}
+
+/* FOOTER */
+.footer{background:var(--dark);color:rgba(255,255,255,.5);text-align:center;padding:16px;font-size:12px;margin-top:auto}
+.footer strong{color:#fff}
+</style>
+</head>
+<body>
+
+<!-- TOC OVERLAY -->
+<div class="toc-overlay hidden" id="toc-overlay" onclick="if(event.target===this)closeTOC()">
+  <div class="toc-box">
+    <div class="toc-hdr">
+      <span style="font-size:20px">📑</span>
+      <div>
+        <div class="toc-hdr-title">AIML_CRS01 — Table of Contents</div>
+        <div class="toc-hdr-sub">Python Refresher with AI · With HH:MM:SS durations</div>
+      </div>
+      <button class="toc-dl-btn" onclick="dlTOC()">⬇ Download</button>
+      <button class="toc-close-btn" onclick="closeTOC()">✕</button>
+    </div>
+    <div class="toc-body">
+      <table class="toc-table">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Lesson</th>
+            <th>Topic</th>
+            <th>Duration</th>
+            <th>Sub-topic</th>
+          </tr>
+        </thead>
+        <tbody id="toc-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 166 51"><path fill="#0041C2" d="M7.19 33.54c-2.376 0-4.94-.78-7.19-2.531l2.032-3.126c1.844 1.344 3.688 2 5.283 2 1.375 0 2-.5 2-1.25v-.062c0-1.032-1.625-1.344-3.47-1.938C3.501 25.976.844 24.85.844 21.6v-.063c0-3.407 2.75-5.314 6.127-5.314 2.125 0 4.407.72 6.252 1.938l-1.813 3.283c-1.657-.97-3.314-1.563-4.533-1.563-1.157 0-1.75.5-1.75 1.156v.063c0 .875 1.594 1.438 3.407 2 2.344.75 5.064 1.907 5.064 4.97v.063c0 3.72-2.782 5.408-6.408 5.408M16.472 14.63v-4.22h5.002v4.22zm.125 18.598V16.473h4.752v16.755zM25.186 33.228V16.473h4.751v2.376c1.094-1.407 2.532-2.688 4.94-2.688 2.218 0 3.844.938 4.72 2.657 1.468-1.75 3.219-2.657 5.5-2.657 3.533 0 5.659 2.125 5.659 6.158v10.91h-4.752v-9.347c0-2.25-1-3.407-2.782-3.407s-2.876 1.156-2.876 3.407v9.346h-4.75v-9.346c0-2.25-1.001-3.407-2.783-3.407s-2.876 1.156-2.876 3.407v9.346zM54.263 40.591V16.473h4.751v2.407c1.157-1.594 2.72-2.72 5.22-2.72 3.908 0 7.628 3.064 7.628 8.66v.062c0 5.595-3.658 8.659-7.627 8.659-2.532 0-4.095-1.157-5.22-2.5v9.55zm8.752-11.082c2.22 0 4.095-1.814 4.095-4.627v-.062c0-2.782-1.875-4.627-4.095-4.627s-4.063 1.845-4.063 4.627v.062c0 2.782 1.844 4.627 4.063 4.627M74.95 33.228V10.41h4.752v22.82zM83.633 22.6v-4.22h5.001v4.22zm.125 17.991V24.445h4.751v16.146z"/><path fill="#F78100" d="M92.565 33.228V10.41h4.752v22.82zM109.094 33.603c-5.033 0-8.753-3.532-8.753-8.658v-.063c0-4.783 3.407-8.721 8.284-8.721 5.595 0 8.159 4.345 8.159 9.096 0 .375-.032.782-.063 1.25h-11.66c.469 2.157 1.97 3.283 4.095 3.283 1.595 0 2.72-.5 4.064-1.72l2.72 2.407c-1.595 1.97-3.814 3.126-6.846 3.126m-4.095-10.065h7.158c-.281-2.126-1.532-3.564-3.532-3.564s-3.251 1.407-3.626 3.564M124.451 33.54c-3.157 0-5.752-1.78-5.752-5.126v-.062c0-3.626 2.782-5.345 6.752-5.345 1.719 0 2.876.28 4.095.687v-.281c0-2-1.219-3.063-3.595-3.063-1.844 0-3.094.312-4.626.906l-1.188-3.626c1.844-.781 3.657-1.344 6.502-1.344 2.626 0 4.439.656 5.658 1.875 1.25 1.25 1.813 3.095 1.813 5.346v9.721h-4.595v-1.813c-1.157 1.282-2.72 2.126-5.064 2.126m1.438-3.281c2.25 0 3.72-1.188 3.72-2.939v-.844a7.5 7.5 0 0 0-3.033-.625c-2.031 0-3.282.813-3.282 2.313v.063c0 1.282 1.063 2.032 2.595 2.032M137.573 33.228V16.473h4.752v3.376c.969-2.282 2.5-3.813 5.345-3.688v4.97h-.25c-3.157 0-5.095 1.876-5.095 5.908v6.19zM150.013 33.228V16.473h4.752v2.376c1.094-1.407 2.532-2.688 4.907-2.688 3.627 0 5.69 2.344 5.69 6.22v10.847h-4.752v-9.346c0-2.25-1.031-3.407-2.876-3.407s-2.969 1.156-2.969 3.407v9.346z"/></svg>
+  <div class="topbar-div"></div>
+  <span class="topbar-label">Expected Folder Structure</span>
+  <a href="Simplilearn_Partner_Upload_Instructions.html" class="back-btn">← Back to Instructions</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-hdr">
+  <div class="page-hdr-eye">Simplilearn Partnerships</div>
+  <h1>Expected <span>Folder Structure</span></h1>
+  <p>Click through each folder to see exactly where your files should go. Follow this structure before uploading to Google Drive.</p>
+</div>
+
+<!-- LEGEND -->
+<div class="legend-bar">
+  <span class="legend-label">File types:</span>
+  <div class="legend-item"><span class="tag t-mp4">.mp4</span> Video</div>
+  <div class="legend-item"><span class="tag t-vtt">.en.vtt</span> Caption</div>
+  <div class="legend-item"><span class="tag t-html">.html</span> Guided Practice / Interactive</div>
+  <div class="legend-item"><span class="tag t-csv">.csv</span> Assessment</div>
+  <div class="legend-item"><span class="tag t-xlsx">.xlsx</span> Table of Contents</div>
+  <div class="legend-item"><span class="tag t-any">.pdf / .zip</span> Resources</div>
+</div>
+
+<!-- GD UI -->
+<div class="gd-wrap">
+  <div class="gd-shell">
+    <div class="gd-topbar">
+      <div class="gd-logo">🔷 <span>Drive</span></div>
+      <div class="gd-search-wrap"><input type="text" placeholder="Search in Drive"></div>
+      <div class="gd-avatar">P</div>
+    </div>
+    <div class="gd-toolbar">
+      <button class="gd-new-btn">＋ New</button>
+      <div class="gd-cmd-sep"></div>
+      <button class="gd-cmd">⬆ Upload</button>
+      <button class="gd-cmd">🔗 Share</button>
+      <div class="gd-count" id="gd-count"></div>
+    </div>
+    <div class="gd-bc" id="gd-bc"></div>
+    <div class="gd-col-heads">
+      <div></div>
+      <div class="gd-ch">Name</div>
+      <div class="gd-ch">Type</div>
+      <div class="gd-ch">Notes</div>
+    </div>
+    <div id="gd-list"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <strong>Simplilearn Solutions Pvt. Ltd.</strong> · Partner Content Upload Instructions · For partner use only · May 2026
+</footer>
+
+<script>
+const GD = {
+  root: {
+    bc: [['root','My Drive']],
+    count: '1 partner folder',
+    rows: [
+      {icon:'📁',name:'Simplilearn_Partner_01',type:'Folder',note:'Your assigned partner folder',cls:'fo',next:'partner'},
+    ]
+  },
+  partner: {
+    bc: [['root','My Drive'],['partner','Simplilearn_Partner_01']],
+    count: '1 course',
+    rows: [
+      {icon:'📁',name:'AIML_CRS01_Python_Refresher_with_AI',type:'Folder',note:'One folder per course submitted',cls:'fo',next:'course'},
+    ]
+  },
+  course: {
+    bc: [['root','My Drive'],['partner','Simplilearn_Partner_01'],['course','AIML_CRS01_Python_Refresher_with_AI']],
+    count: '3 items',
+    rows: [
+      {icon:'📁',name:'Final_Output',type:'Folder',note:'All lesson folders go here — MP4, HTML, interactive files',cls:'fo',next:'finaloutput'},
+      {icon:'📁',name:'Course_Components',type:'Folder',note:'Assessments, Datasets, Demo Documents, Guided Practice Documents',cls:'fo',next:'coursecomponents'},
+      {icon:'📊',name:'AIML_CRS01_TOC.xlsx',type:'.xlsx',note:'Table of Contents — fill with HH:MM:SS durations',tc:'t-xlsx',toc:true},
+    ]
+  },
+  finaloutput: {
+    bc: [['root','My Drive'],['partner','Simplilearn_Partner_01'],['course','AIML_CRS01_Python_Refresher_with_AI'],['finaloutput','Final_Output']],
+    count: '2 lesson folders',
+    rows: [
+      {icon:'📁',name:'Lesson_01_Introduction_to_Python_Fundamentals_and_Setup',type:'Folder',note:'One folder per lesson',cls:'fo',next:'lesson1'},
+      {icon:'📁',name:'Lesson_02_Data_Structures_Conditional_Statements_and_Loops',type:'Folder',note:'One folder per lesson',cls:'fo',next:'lesson2'},
+    ]
+  },
+  lesson1: {
+    bc: [['root','My Drive'],['partner','Simplilearn_Partner_01'],['course','AIML_CRS01_Python_Refresher_with_AI'],['finaloutput','Final_Output'],['lesson1','Lesson_01_Introduction_to_Python_Fundamentals_and_Setup']],
+    count: '6 items',
+    rows: [
+      {icon:'🎬',name:'AIML_CRS01_1.01_Programming_Foundations.mp4',type:'.mp4',note:'Lesson video',tc:'t-mp4'},
+      {icon:'🎬',name:'AIML_CRS01_1.02_Exploring_Python_Development_Environment.mp4',type:'.mp4',note:'Lesson video',tc:'t-mp4'},
+      {icon:'🎬',name:'AIML_CRS01_1.02D_Demo_Installing_VS_Code.mp4',type:'.mp4',note:'Demo video',tc:'t-mp4'},
+      {icon:'🟢',name:'AIML_CRS01_1.07_Guided_Practice.html',type:'.html',note:'Guided Practice — always .html, never .mp4',tc:'t-html'},
+      {icon:'⚡',name:'AIML_CRS01_1.08_Knowledge_Check.html',type:'.html',note:'Interactive file — unique topic number',tc:'t-html'},
+      {icon:'📁',name:'transcript',type:'Folder',note:'All .en.vtt caption files go here — lowercase, no prefix',cls:'fo',next:'transcript1'},
+    ]
+  },
+  lesson2: {
+    bc: [['root','My Drive'],['partner','Simplilearn_Partner_01'],['course','AIML_CRS01_Python_Refresher_with_AI'],['finaloutput','Final_Output'],['lesson2','Lesson_02_Data_Structures_Conditional_Statements_and_Loops']],
+    count: '5 items',
+    rows: [
+      {icon:'🎬',name:'AIML_CRS01_2.01_Lists.mp4',type:'.mp4',note:'Lesson video',tc:'t-mp4'},
+      {icon:'🎬',name:'AIML_CRS01_2.02_Tuples.mp4',type:'.mp4',note:'Lesson video',tc:'t-mp4'},
+      {icon:'🎬',name:'AIML_CRS01_2.08_Demo_Understanding_Comprehensions.mp4',type:'.mp4',note:'Demo video',tc:'t-mp4'},
+      {icon:'🟢',name:'AIML_CRS01_2.09_Guided_Practice.html',type:'.html',note:'Guided Practice — always .html',tc:'t-html'},
+      {icon:'📁',name:'transcript',type:'Folder',note:'All .en.vtt caption files go here',cls:'fo',next:'transcript2'},
+    ]
+  },
+  transcript1: {
+    bc: [['root','My Drive'],['partner','Simplilearn_Partner_01'],['course','AIML_CRS01_Python_Refresher_with_AI'],['finaloutput','Final_Output'],['lesson1','Lesson_01_Introduction_to_Python_Fundamentals_and_Setup'],['transcript1','transcript']],
+    count: '3 caption files',
+    rows: [
+      {icon:'💬',name:'AIML_CRS01_1.01_Programming_Foundations.en.vtt',type:'.en.vtt',note:'Must be .en.vtt — not .vtt or .srt',tc:'t-vtt'},
+      {icon:'💬',name:'AIML_CRS01_1.02_Exploring_Python_Development_Environment.en.vtt',type:'.en.vtt',note:'Must be .en.vtt — not .vtt or .srt',tc:'t-vtt'},
+      {icon:'💬',name:'AIML_CRS01_1.02D_Demo_Installing_VS_Code.en.vtt',type:'.en.vtt',note:'Must be .en.vtt — not .vtt or .srt',tc:'t-vtt'},
+    ]
+  },
+  transcript2: {
+    bc: [['root','My Drive'],['partner','Simplilearn_Partner_01'],['course','AIML_CRS01_Python_Refresher_with_AI'],['finaloutput','Final_Output'],['lesson2','Lesson_02_Data_Structures_Conditional_Statements_and_Loops'],['transcript2','transcript']],
+    count: '3 caption files',
+    rows: [
+      {icon:'💬',name:'AIML_CRS01_2.01_Lists.en.vtt',type:'.en.vtt',note:'Must be .en.vtt — not .vtt or .srt',tc:'t-vtt'},
+      {icon:'💬',name:'AIML_CRS01_2.02_Tuples.en.vtt',type:'.en.vtt',note:'Must be .en.vtt — not .vtt or .srt',tc:'t-vtt'},
+      {icon:'💬',name:'AIML_CRS01_2.08_Demo_Understanding_Comprehensions.en.vtt',type:'.en.vtt',note:'Must be .en.vtt — not .vtt or .srt',tc:'t-vtt'},
+    ]
+  },
+  coursecomponents: {
+    bc: [['root','My Drive'],['partner','Simplilearn_Partner_01'],['course','AIML_CRS01_Python_Refresher_with_AI'],['coursecomponents','Course_Components']],
+    count: '4 subfolders',
+    rows: [
+      {icon:'📁',name:'Assessments',type:'Folder',note:'Course-end assessment in Simplilearn CSV format',cls:'fo',next:'assessments'},
+      {icon:'📁',name:'Datasets',type:'Folder',note:'Raw or processed data files used in course exercises',cls:'fo',next:'datasets'},
+      {icon:'📁',name:'Demo_Documents',type:'Folder',note:'Reference documents and scripts used in demo recordings',cls:'fo',next:'demodocs'},
+      {icon:'📁',name:'Guided_Practice_Documents',type:'Folder',note:'Supporting materials for Guided Practice sessions',cls:'fo',next:'gpdocs'},
+    ]
+  },
+  assessments: {
+    bc: [['root','My Drive'],['partner','Simplilearn_Partner_01'],['course','AIML_CRS01_Python_Refresher_with_AI'],['coursecomponents','Course_Components'],['assessments','Assessments']],
+    count: '1 file',
+    rows: [
+      {icon:'📋',name:'AIML_CRS01_Course_End_Assessment.csv',type:'.csv',note:'Download the template from the main instructions page',tc:'t-csv'},
+    ]
+  },
+  datasets: {
+    bc: [['root','My Drive'],['partner','Simplilearn_Partner_01'],['course','AIML_CRS01_Python_Refresher_with_AI'],['coursecomponents','Course_Components'],['datasets','Datasets']],
+    count: '1 file',
+    rows: [
+      {icon:'📊',name:'AIML_CRS01_Sample_Dataset.csv',type:'.csv',note:'Include only if used in course exercises',tc:'t-csv'},
+    ]
+  },
+  demodocs: {
+    bc: [['root','My Drive'],['partner','Simplilearn_Partner_01'],['course','AIML_CRS01_Python_Refresher_with_AI'],['coursecomponents','Course_Components'],['demodocs','Demo_Documents']],
+    count: '1 file',
+    rows: [
+      {icon:'📄',name:'AIML_CRS01_1.02D_Demo_Script.pdf',type:'.pdf',note:'Reference documents and scripts for demo recordings',tc:'t-any'},
+    ]
+  },
+  gpdocs: {
+    bc: [['root','My Drive'],['partner','Simplilearn_Partner_01'],['course','AIML_CRS01_Python_Refresher_with_AI'],['coursecomponents','Course_Components'],['gpdocs','Guided_Practice_Documents']],
+    count: '1 file',
+    rows: [
+      {icon:'📄',name:'AIML_CRS01_1.07_Guided_Practice_Guide.pdf',type:'.pdf',note:'Supporting materials for Guided Practice sessions',tc:'t-any'},
+    ]
+  },
+};
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function gdGo(id) {
+  const data = GD[id];
+  if (!data) return;
+  renderGD(id);
+}
+
+function renderGD(id) {
+  const data = GD[id];
+  if (!data) return;
+
+  // breadcrumb
+  document.getElementById('gd-bc').innerHTML = data.bc.map((item, i) => {
+    const [nid, label] = item;
+    const isCur = i === data.bc.length - 1;
+    return isCur
+      ? `<span class="gd-bc-item cur">${label}</span>`
+      : `<span class="gd-bc-item" onclick="gdGo('${nid}')">${label}</span><span class="gd-bc-sep">›</span>`;
+  }).join('');
+
+  // count
+  document.getElementById('gd-count').textContent = data.count;
+
+  // rows
+  document.getElementById('gd-list').innerHTML = data.rows.map(r => {
+    const clickable = r.next ? `onclick="gdGo('${r.next}')"` : '';
+    const nc = r.cls === 'fo' ? 'fo' : '';
+    const badge = `<span class="gd-type tag ${r.tc || ''}">${r.type}</span>`;
+    const viewBtn = r.toc ? `<button class="view-btn" onclick="event.stopPropagation();showTOC()">👁 View TOC</button>` : '';
+    const dlBtn = r.toc ? `<button class="dl-btn-sm" onclick="event.stopPropagation();dlTOC()">⬇</button>` : '';
+    return `<div class="gd-row ${r.toc?'toc-row':''} ${!r.next&&!r.toc?'no-click':''}" ${clickable}>
+      <div class="gd-icon">${r.icon}</div>
+      <div class="gd-name-cell">
+        <span class="gd-name ${nc}">${r.name}</span>
+        ${r.toc?'<span class="gd-sub">Click View TOC to preview contents</span>':''}
+      </div>
+      <div class="gd-cell">${badge}</div>
+      <div class="gd-notes">${r.note||''} ${viewBtn}${dlBtn}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── TOC ───────────────────────────────────────────────────────────────────────
+const TOC_DATA = {
+  courses: [
+    {name:'Python Refresher with AI', lessons:[
+      {name:'Introduction to Python: Fundamentals and Setup', topics:[
+        {name:'Programming Foundations', dur:'00:06:12', subs:['Introduction to Artificial Intelligence','Evolution of Artificial Intelligence','Traditional AI Vs Generative AI']},
+        {name:'Exploring Python Development Environments', dur:'00:08:45', subs:['VS Code Setup and Features','Jupyter Notebook','Google Colab']},
+        {name:'Introduction to Python', dur:'00:05:30', subs:['History of Python','Benefits of Python','Why Python for AI?']},
+        {name:'Python Basics: Syntax, Structure & Execution', dur:'00:07:20', subs:['Python Syntax','Identifiers','Indentation','I/O Operations']},
+        {name:'Python Variables and Data Types', dur:'00:06:55', subs:['Variables','Scalar Data','Aggregated Data']},
+        {name:'Python Operators', dur:'00:05:10', subs:['Arithmetic Operators','Comparison Operators','Logical Operators']},
+      ]},
+      {name:'Data Structures, Conditional Statements and Loops', topics:[
+        {name:'Lists', dur:'00:07:30', subs:['Creating Lists','Indexing and Slicing','List Methods: append(), extend(), pop()']},
+        {name:'Tuples', dur:'00:05:45', subs:['Creating Tuples','Tuple Packing and Unpacking']},
+        {name:'Dictionaries', dur:'00:08:20', subs:['Creating Dictionaries','Accessing Values','Nested Dictionaries']},
+        {name:'Sets', dur:'00:04:55', subs:['Creating Sets','Set Operations']},
+        {name:'Conditional Statements', dur:'00:06:40', subs:['If Statement','If-Else Statement','If-Elif-Else','Nested-If']},
+        {name:'Loops', dur:'00:09:15', subs:['For Loop','While Loop','Nested Loops','Break/Continue/Else']},
+        {name:'Comprehensions', dur:'00:05:50', subs:['List Comprehensions','Dictionary Comprehensions','Set Comprehensions']},
+      ]},
+    ]},
+  ]
+};
+
+function showTOC() {
+  document.getElementById('toc-overlay').classList.remove('hidden');
+  const tbody = document.getElementById('toc-tbody');
+  let rows = '';
+  TOC_DATA.courses.forEach(course => {
+    let fC = true;
+    const cRows = course.lessons.reduce((a,l) => a + l.topics.reduce((b,t) => b + Math.max(1,t.subs?t.subs.length:1), 0), 0);
+    course.lessons.forEach(lesson => {
+      let fL = true;
+      const lRows = lesson.topics.reduce((a,t) => a + Math.max(1,t.subs?t.subs.length:1), 0);
+      lesson.topics.forEach(topic => {
+        const subs = topic.subs && topic.subs.length ? topic.subs : [''];
+        subs.forEach((sub, si) => {
+          rows += `<tr>`;
+          if (fC && fL && si === 0) rows += `<td class="tc-course" rowspan="${cRows}">${course.name}</td>`;
+          if (fL && si === 0) rows += `<td class="tc-lesson" rowspan="${lRows}">${lesson.name}</td>`;
+          if (si === 0) rows += `<td class="tc-topic" rowspan="${subs.length}">${topic.name}</td><td class="tc-dur" rowspan="${subs.length}">${topic.dur}</td>`;
+          rows += `<td class="tc-sub">${sub}</td></tr>`;
+          if (fL && si === 0) fL = false;
+        });
+      });
+      if (fC) fC = false;
+    });
+  });
+  tbody.innerHTML = rows;
+}
+
+function closeTOC() {
+  document.getElementById('toc-overlay').classList.add('hidden');
+}
+
+function dlTOC() {
+  let csv = 'Course Name,Lesson No.,Lesson Name,Topic No.,Topics,Duration\n';
+  TOC_DATA.courses.forEach(c => {
+    c.lessons.forEach((l, li) => {
+      l.topics.forEach((t, ti) => {
+        (t.subs||['']).forEach((s, si) => {
+          csv += `"${si===0&&ti===0&&li===0?c.name:''}","${si===0&&ti===0?li+1:''}","${si===0&&ti===0?l.name:''}","${si===0?`${li+1}.${String(ti+1).padStart(2,'0')}`:''}","${si===0?t.name:''}","${si===0?t.dur:''}"\n`;
+        });
+      });
+    });
+  });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+  a.download = 'AIML_CRS01_TOC.csv';
+  a.click();
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+renderGD('root');
+</script>
+</body>
+</html>
