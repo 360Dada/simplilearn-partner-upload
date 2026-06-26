@@ -151,6 +151,18 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .drive-btn{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;padding:12px 24px;border-radius:6px;font-size:14px;font-weight:700;text-decoration:none;transition:all .15s;margin-top:14px}
 .drive-btn:hover{background:#d96e00;transform:translateY(-1px);box-shadow:0 4px 12px rgba(247,129,0,.3)}
 
+
+/* NATIVE CHECKBOX CHECKLIST */
+.chk-row{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:6px;cursor:pointer;background:#fff;margin-bottom:6px;transition:border-color .1s}
+.chk-row:hover{border-color:#F78100;background:#fff9f3}
+.chk-input{display:none}
+.chk-box{width:20px;height:20px;border:2px solid #d1d5db;border-radius:4px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .1s;background:#fff}
+.chk-label{flex:1;font-size:13.5px;line-height:1.5;color:#2d2d2d}
+.chk-input:checked + .chk-box{background:#059669;border-color:#059669}
+.chk-input:checked + .chk-box::after{content:"✓";color:#fff;font-size:13px;font-weight:700;line-height:1}
+.chk-input:checked ~ .chk-label{color:#059669}
+.chk-row:has(.chk-input:checked){background:#f0fdf4;border-color:#059669}
+
 /* EXPLORE BUTTON */
 .explore-btn{display:flex;align-items:center;gap:12px;width:100%;padding:18px 24px;background:var(--surface);border:2px dashed var(--border);border-radius:8px;font-size:15px;font-weight:600;color:var(--blue);cursor:pointer;transition:all .15s;font-family:inherit;margin-bottom:4px}
 .explore-btn:hover{border-color:var(--blue);background:var(--gd-hover);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,65,194,.1)}
@@ -250,13 +262,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
         <td>Assessment / Quiz</td>
         <td><span class="tag t-csv">.csv</span> Simplilearn format</td>
         <td>Assessments folder</td>
-        <td><span class="badge-req">✅ Required</span></td>
+        <td><span class="badge-req">✅ Required</span><button onclick="dlAssessment()" style="margin-left:8px;font-size:10px;font-weight:600;padding:3px 9px;border-radius:10px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer;white-space:nowrap">⬇ Template</button></td>
       </tr>
       <tr>
         <td>Table of Contents</td>
         <td><span class="tag t-xlsx">.xlsx</span> with HH:MM:SS durations</td>
         <td>Table_of_Contents folder</td>
-        <td><span class="badge-req">✅ Required</span></td>
+        <td><span class="badge-req">✅ Required</span><button onclick="dlTOC()" style="margin-left:8px;font-size:10px;font-weight:600;padding:3px 9px;border-radius:10px;border:1px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer;white-space:nowrap">⬇ Template</button></td>
       </tr>
       <tr>
         <td>Downloadable resources</td>
@@ -412,14 +424,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
     <div class="prog-lbl"><span id="prog-txt">0 of 7 completed</span><span id="prog-pct">0%</span></div>
     <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
   </div>
-  <div class="checklist" id="checklist-items">
-    <div class="ci" onclick="tick(this)"><div class="cbx">✓</div><div class="cl">All videos exported as <strong>.mp4</strong> and named following the video naming structure</div><span class="cbadge cb-req">Required</span></div>
-    <div class="ci" onclick="tick(this)"><div class="cbx">✓</div><div class="cl">Caption files provided as <strong>.en.vtt</strong> (not .vtt) inside a <strong>transcript</strong> subfolder in each lesson</div><span class="cbadge cb-req">Required</span></div>
-    <div class="ci" onclick="tick(this)"><div class="cbx">✓</div><div class="cl">Assessment submitted in <strong>Simplilearn CSV format</strong> with explanations for all questions</div><span class="cbadge cb-req">Required</span></div>
-    <div class="ci" onclick="tick(this)"><div class="cbx">✓</div><div class="cl">Table of Contents completed with <strong>HH:MM:SS durations</strong> for every topic</div><span class="cbadge cb-req">Required</span></div>
-    <div class="ci" onclick="tick(this)"><div class="cbx">✓</div><div class="cl">Folder structure matches the expected structure shown above</div><span class="cbadge cb-req">Required</span></div>
-    <div class="ci" onclick="tick(this)"><div class="cbx">✓</div><div class="cl">Downloadable resources and supporting materials included if used in the course</div><span class="cbadge cb-opt">If applicable</span></div>
-    <div class="ci" onclick="tick(this)"><div class="cbx">✓</div><div class="cl">All files uploaded to the shared Google Drive folder</div><span class="cbadge cb-req">Required</span></div>
+  <div id="checklist-items">
+    <label class="chk-row"><input type="checkbox" class="chk-input"><span class="chk-box"></span><span class="chk-label">All videos exported as <strong>.mp4</strong> and named following the video naming structure</span><span class="cbadge cb-req">Required</span></label>
+    <label class="chk-row"><input type="checkbox" class="chk-input"><span class="chk-box"></span><span class="chk-label">Caption files provided as <strong>.en.vtt</strong> (not .vtt) inside a <strong>transcript</strong> subfolder in each lesson</span><span class="cbadge cb-req">Required</span></label>
+    <label class="chk-row"><input type="checkbox" class="chk-input"><span class="chk-box"></span><span class="chk-label">Assessment submitted in <strong>Simplilearn CSV format</strong> with explanations for all questions</span><span class="cbadge cb-req">Required</span></label>
+    <label class="chk-row"><input type="checkbox" class="chk-input"><span class="chk-box"></span><span class="chk-label">Table of Contents completed with <strong>HH:MM:SS durations</strong> for every topic</span><span class="cbadge cb-req">Required</span></label>
+    <label class="chk-row"><input type="checkbox" class="chk-input"><span class="chk-box"></span><span class="chk-label">Folder structure matches the expected structure shown above</span><span class="cbadge cb-req">Required</span></label>
+    <label class="chk-row"><input type="checkbox" class="chk-input"><span class="chk-box"></span><span class="chk-label">Downloadable resources and supporting materials included if used in the course</span><span class="cbadge cb-opt">If applicable</span></label>
+    <label class="chk-row"><input type="checkbox" class="chk-input"><span class="chk-box"></span><span class="chk-label">All files uploaded to the shared Google Drive folder</span><span class="cbadge cb-req">Required</span></label>
   </div>
 
   <!-- CONTACT -->
@@ -514,26 +526,6 @@ function showTab(id, btn) {
 }
 
 // ── CHECKLIST ─────────────────────────────────────────────────────────────────
-function tick(el) {
-  el.classList.toggle('done');
-  const done = document.querySelectorAll('#checklist-items .ci.done').length;
-  const total = document.querySelectorAll('#checklist-items .ci').length;
-  const pct = Math.round(done / total * 100);
-  document.getElementById('prog-txt').textContent = `${done} of ${total} completed`;
-  document.getElementById('prog-pct').textContent = pct + '%';
-  document.getElementById('prog-fill').style.width = pct + '%';
-}
-
-// Fallback event delegation for checklist
-document.addEventListener('DOMContentLoaded', function() {
-  const checklist = document.getElementById('checklist-items');
-  if (checklist) {
-    checklist.addEventListener('click', function(e) {
-      const item = e.target.closest('.ci');
-      if (item) tick(item);
-    });
-  }
-});
 
 // ── GOOGLE DRIVE UI ───────────────────────────────────────────────────────────
 const GD = {
@@ -658,6 +650,8 @@ function openFolderPopup() {
 function closeFolderPopup() {
   document.getElementById('folder-overlay').classList.add('hidden');
 }
+
+function gdGo(id) {
   const data = GD[id];
   if (!data) return;
   gdStack = [...(gdStack.filter((_, i) => i <= gdStack.indexOf(id))), id];
@@ -775,6 +769,25 @@ function dl(content, filename, type) {
   a.download = filename;
   a.click();
 }
+
+
+// Progress bar for checklist
+document.addEventListener('DOMContentLoaded', function() {
+  var boxes = document.querySelectorAll('.chk-input');
+  boxes.forEach(function(box) {
+    box.addEventListener('change', function() {
+      var total = boxes.length;
+      var done = document.querySelectorAll('.chk-input:checked').length;
+      var pct = Math.round(done / total * 100);
+      var txt = document.getElementById('prog-txt');
+      var pctEl = document.getElementById('prog-pct');
+      var fill = document.getElementById('prog-fill');
+      if(txt) txt.textContent = done + ' of ' + total + ' completed';
+      if(pctEl) pctEl.textContent = pct + '%';
+      if(fill) fill.style.width = pct + '%';
+    });
+  });
+});
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 
